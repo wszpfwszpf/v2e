@@ -135,7 +135,7 @@ class SuperSloMo(object):
                 'closing slomo video AVI {} after '
                 'writing {} frames'.format(self.vid_slomo, self.numSlomoVideoFramesWritten))
             self.slomo_writer.release()
-        cv2.destroyAllWindows()
+        # cv2.destroyAllWindows()
 
     def __transform(self):
         """create the Transform instances.
