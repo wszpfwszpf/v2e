@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 """
 Python code for extracting frames from video file and synthesizing fake DVS
@@ -69,7 +70,7 @@ if torch_device == 'cpu':
                    'see https://pytorch.org/get-started/locally/ '
                    'to generate the correct conda install command to enable GPU-accelerated CUDA.')
 
-# may only apply to windows
+# may only apply to windowsF
 try:
     #  from scripts.regsetup import description
     from gooey import Gooey  # pip install Gooey
@@ -119,7 +120,7 @@ def main():
             f'You can try to install with "pip install Gooey"')
 
     (args, other_args, command_line) = get_args()
-
+    args.no_preview = True
     # set input file
     input_file = args.input
     synthetic_input: str = args.synthetic_input
@@ -663,9 +664,8 @@ def main():
                 f'Resizing {srcNumFramesToBeProccessed} input frames '
                 f'to output size '
                 f'(with possible RGB to luma conversion)')
-            for inputFrameIndex in tqdm(
-                    range(srcNumFramesToBeProccessed),
-                    desc='rgb2luma', unit='fr'):
+            for inputFrameIndex in tqdm(range(srcNumFramesToBeProccessed), desc='rgb2luma', unit='fr'):
+            # for inputFrameIndex in tqdm(range(srcNumFramesToBeProccessed)):
                 # read frame
                 ret, inputVideoFrame = cap.read()
                 num_frames += 1
@@ -714,7 +714,7 @@ def main():
                 save_path = os.path.join(
                     source_frames_dir, str(inputFrameIndex).zfill(8) + ".npy")
                 np.save(save_path, inputVideoFrame)
-                # print("Writing source frame {}".format(save_path), end="\r")
+                print("Writing source frame {}".format(save_path), end="\r")
             cap.release()
 
             with TemporaryDirectory() as interpFramesFolder:

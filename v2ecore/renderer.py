@@ -126,7 +126,7 @@ class EventRenderer(object):
                 self.video_output_file.release()
             if self.frame_times_output_file is not None:
                 self.frame_times_output_file.close()
-            cv2.destroyAllWindows()
+            # cv2.destroyAllWindows()
 
     def _check_outputs_open(self):
         """checks that output video and event datasets files are open"""
